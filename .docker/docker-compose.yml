@@ -1,0 +1,25 @@
+version: '3'
+services:
+    web:
+        container_name: codeigniter_4
+        build:
+            context: ./php
+        ports:
+            - 80:80
+        volumes:
+            - ../app:/var/www/html
+        links:
+            - mysql
+        depends_on:
+          - mysql
+    mysql:
+        container_name: codeigniter_4_db
+        image: mysql:8.0.19
+        volumes:
+            - ./db:/var/lib/mysql
+        restart: on-failure
+        command: ['--sql_mode=','--default-authentication-plugin=mysql_native_password']
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
