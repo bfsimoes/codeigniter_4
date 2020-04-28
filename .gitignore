@@ -1,1 +1,2 @@
-.docker/db/
+.docker/db/logs/mysql
+.docker/db/mysql
